@@ -1,0 +1,162 @@
+/* --- Estilos base (Mobile-First) --- */
+body {
+          font-family: Arial, sans-serif;
+          background-color: #f0f0f0; /* Color de fondo claro por defecto */
+          margin: 0;
+          padding: 0;
+          display: flex;
+          flex-direction: column;
+          min-height: 100vh;
+      }
+      
+      header {
+          text-align: center;
+          padding: 20px;
+          background-color: #333;
+          color: #fff;
+          border-bottom: 4px solid #555;
+      }
+      
+      main {
+          flex: 1;
+          display: grid; /* Usamos grid para el diseño de columnas */
+          grid-template-columns: 1fr; /* Una columna para móvil */
+          gap: 10px; /* Espacio entre filas y columnas */
+          padding: 20px;
+          justify-items: center; /* Centrar ítems en la cuadrícula */
+      }
+      
+      main div { /* Esto se refiere a tus "figuras" */
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          background-color: #fff; /* Color de fondo claro por defecto */
+          border-radius: 8px; /* Radio de borde por defecto para figuras */
+          overflow: hidden;
+          box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+          transition: transform 0.3s ease-in-out; /* Transición suave */
+          padding: 5px;
+          width: 90%; /* Ancho por defecto para pantallas más pequeñas */
+          border: 1px solid #ccc; /* Borde claro por defecto */
+          color: #333; /* Color de fuente oscuro por defecto */
+      }
+      
+      main div img {
+          width: 100%;
+          height: auto;
+          max-height: 40vh;
+          object-fit: contain;
+      }
+      
+      main div:hover {
+          transform: scale(1.05);
+      }
+      
+      .label {
+          padding: 10px;
+          text-align: center;
+          font-weight: bold;
+      }
+      
+      footer {
+          text-align: center;
+          padding: 15px;
+          background-color: #333;
+          color: #fff;
+          margin-top: auto; /* Empuja el footer hacia abajo */
+      }
+      
+      footer a {
+          color: #fff;
+          text-decoration: none;
+      }
+      
+      footer a:hover {
+          text-decoration: underline;
+      }
+      
+      /* --- Media Query para Tablet (min-width: 772px) --- */
+      @media screen and (min-width: 772px) {
+          main {
+              grid-template-columns: repeat(2, 1fr); /* Dos columnas para tablet */
+              gap: 20px; /* Aumentamos el espacio para tablet */
+          }
+      
+          main div {
+              width: auto; /* Permitimos que la cuadrícula controle el ancho */
+              border-radius: 50%; /* Forma circular para las figuras */
+              aspect-ratio: 1 / 1; /* Mantiene la proporción para la forma circular */
+              justify-content: center; /* Centra el contenido verticalmente en la figura */
+              padding: 10px; /* Ajuste de padding para la forma circular */
+          }
+      
+          main div img {
+              max-height: 20vh; /* Ajuste de altura para tablet */
+              border-radius: 50%; /* Imágenes circulares también para complementar */
+          }
+      
+          main div:last-child { /* La última figura ocupa ambas columnas */
+              grid-column: span 2;
+          }
+      }
+      
+      /* --- Media Query para Pantalla Grande (min-width: 992px) --- */
+      @media screen and (min-width: 992px) {
+          main {
+              grid-template-columns: repeat(3, 1fr); /* Tres columnas para pantallas grandes */
+          }
+      
+          main div {
+              border-radius: 8px; /* Eliminamos el radio del borde (vuelve a ser cuadrado) */
+              aspect-ratio: auto; /* Desactivamos la proporción fija */
+              padding: 5px; /* Ajuste de padding */
+          }
+      
+          main div img {
+              max-height: 30vh; /* Ajuste de altura para pantallas grandes */
+              border-radius: 0; /* Imágenes cuadradas de nuevo */
+          }
+      
+          main div:nth-child(3n + 1) { /* Cada tercera figura (1ro, 4to, 7mo, etc.) ocupa ambas columnas */
+              grid-column: span 2;
+          }
+      
+          /* Ajuste para que la última figura en la vista de pantalla grande no rompa el patrón si está sola en una fila */
+          main div:last-child:nth-child(odd):not(:nth-child(3n + 1)) {
+              grid-column: auto; /* Asegura que la última figura no se expanda si no debe */
+          }
+      }
+      
+      
+      /* --- Media Query: prefers-reduced-motion --- */
+      @media (prefers-reduced-motion) {
+          * {
+              transition: none !important; /* Elimina todas las transiciones */
+              animation: none !important; /* Elimina todas las animaciones */
+              scroll-behavior: auto !important; /* Elimina el comportamiento de desplazamiento suave */
+          }
+      }
+      
+      /* --- Media Query para Esquema de Colores Oscuros (prefers-color-scheme: dark) --- */
+      @media (prefers-color-scheme: dark) {
+          body {
+              background-color: #1a1a1a; /* Fondo oscuro */
+              color: #eee; /* Texto claro */
+          }
+      
+          header {
+              background-color: #000;
+              border-bottom-color: #333;
+          }
+      
+          main div {
+              background-color: #333; /* Fondo oscuro para las figuras */
+              color: #ffc; /* Color de fuente amarillento para las figuras */
+              border-color: #000; /* Borde negro para las figuras */
+              box-shadow: 0 2px 5px rgba(255, 255, 255, 0.1);
+          }
+      
+          footer {
+              background-color: #000;
+          }
+      }
